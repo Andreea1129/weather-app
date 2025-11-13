@@ -1,0 +1,115 @@
+/* Customizam Bootstrap */
+.btn-secondary,
+.btn-secondary:hover,
+.btn-secondary:focus {
+  background-color: #ff9a1f;
+  border-color: #ff9a1f;
+}
+
+.text-primary {
+  color: #0f172a !important;
+}
+
+.text-secondary {
+  color: #fbb44c !important;
+}
+
+.text-light {
+  color: #eaeaea !important;
+}
+
+.bg-primary {
+  background-color: #0f172a !important;
+}
+
+.bg-secondary {
+  background-color: #dfedf5 !important;
+}
+
+.bg-dark {
+  background-color: #0a101c !important;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: bold;
+}
+
+/* Adaugam font-ul nostru */
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+/* Layout */
+body {
+  display: flex;
+  flex-direction: column;
+
+  min-height: 100vh;
+}
+
+main {
+  flex-grow: 1;
+}
+
+/* Header */
+header {
+  height: 30vh;
+}
+
+.scroll-to-top {
+  visibility: hidden;
+  border-radius: 100%;
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  background-color: #ff9a1f;
+  color: #fff;
+  padding: 5px 10px;
+  border: none;
+}
+
+.city-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0px;
+}
+
+.city-image img {
+  border-radius: 100%;
+  height: 300px;
+  width: 300px;
+  margin: 20px 15px;
+}
+.container a{
+  text-decoration:none;
+}
+/* Adaugam stilizarea pe mobil */
+
+@media (max-width: 576px) {
+  .current-weather {
+    text-align: center;
+  }
+
+  .current-weather img {
+    width: 75px;
+    height: auto;
+  }
+
+  .weather-forecast-box img {
+    width: 50px;
+    height: auto;
+  }
+
+  .weather-forecast-box .real-feel {
+    display: none;
+  }
+
+  .scroll-to-top {
+    padding: 2.5px 5px;
+    right: 2.5px;
+    bottom: 35px;
+  }
+}
