@@ -41,11 +41,11 @@ function displayCurrentWeather(city) {
                     </div>
                 </div>
                 <div class="px-3">
-                    <p class="fs-5">Vânt: <strong>${windSpeed} km/h</strong>
+                    <p class="fs-5">Vânt: <strong>${windSpeed} km/h</strong></p>
                     <p class="fs-5">Umiditate: <strong>${humidity}%</strong></p>
                 </div>
                 <div class="px-3">
-                    <p class="fs-5">Răsărit: <strong>${sunrise}</strong>
+                    <p class="fs-5">Răsărit: <strong>${sunrise}</strong></p>
                     <p class="fs-5">Apus: <strong>${sunset}</strong></p>
                 </div>
             `;
