@@ -1,34 +1,29 @@
 // In acest fisier sta logica pentru a face fetch-ul catre API-ul de vreme curenta, parsarea datelor primite de la API si inserarea datelor in HTML
 
 function displayCurrentWeather(city) {
-    // Ne generam link-ul pentru a primi date despre vremea curenta
+    // Se genereaza link-ul pentru a primi date despre vremea curenta
     const currentWeatherEndpoint  = getCurrentWeatherEndpoint(city);
 
     fetch(currentWeatherEndpoint)
         .then(response => response.json())
         .then((data) => {
-            // console.log(data)
-            // Extragem proprietatile de care avem nevoie din datele primite de la server
-            const { name, dt, main, weather, wind } = data;
-            // const nameFromServer = data.name;
-            // const dt = data.dt;
-            // const main = data.main;
+            const { name, dt, main, weather, wind, sys} = data;
 
             const day = getDayOfTheWeek(dt);
             const hour = getHour(dt);
+            const sunrise = getHour(sys.sunrise);
+            const sunset = getHour(sys.sunset);
 
-            // Rotunjim valorile pentru temperatura
             const temperature = Math.round(main.temp);
             const realFeel = Math.round(main['feels_like']);
+            const humidity = main.humidity;
 
-            // Atentie weather este un array cu un singur element
+            // weather este un array cu un singur element
             const weatherDescription = weather[0].description;
             const windSpeed = Math.round(windToKmPerHour(wind.speed));
             const weatherIcon = getWeatherIcon(weather[0].icon);
+        
 
-            // console.log(temperature,realFeel,weatherDescription,windSpeed,weatherIcon);
-
-            // Afisam in HTML informatiile parsate mai sus
             const currentWeatherContainer=document.querySelector('.current-weather');
             currentWeatherContainer.innerHTML = `
                 <div class="px-3">
@@ -41,10 +36,18 @@ function displayCurrentWeather(city) {
                 </div>
                 <div class="px-3">
                     <p class="fs-5">Real feel: <strong>${realFeel}°C</strong></p>
-                    <p class="fs-5 text-capitalize">${weatherDescription}</p>
-                    <p class="fs-5">Vant: <strong>${windSpeed} km/h</strong>
+                    <div class="fs-5 text-capitalize">
+                        <strong>${weatherDescription}</strong>
+                    </div>
+                </div>
+                <div class="px-3">
+                    <p class="fs-5">Vânt: <strong>${windSpeed} km/h</strong>
+                    <p class="fs-5">Umiditate: <strong>${humidity}%</strong></p>
+                </div>
+                <div class="px-3">
+                    <p class="fs-5">Răsărit: <strong>${sunrise}</strong>
+                    <p class="fs-5">Apus: <strong>${sunset}</strong></p>
                 </div>
             `;
         })
-
 }
