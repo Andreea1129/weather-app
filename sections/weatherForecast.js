@@ -66,7 +66,7 @@ function displayWeatherForecast(city) {
 
           const box = document.createElement("div");
           box.className =
-            "weather-forecast-box d-flex w-100 justify-content-center align-items-center border rounded p-3 mb-3 gap-3 text-center";
+            "weather-forecast-box d-flex w-100 justify-content-between align-items-center border rounded p-3 mb-3 gap-3 text-center";
           box.innerHTML = `
               <div class="fs-5">${hour}</div>
               <div><img src="${weatherIcon}" alt="weatherIcon" /></div>
