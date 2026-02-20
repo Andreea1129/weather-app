@@ -66,14 +66,14 @@ function displayWeatherForecast(city) {
 
           const box = document.createElement("div");
           box.className =
-            "weather-forecast-box d-flex w-100 justify-content-between align-items-center border rounded p-3 mb-3";
+            "weather-forecast-box d-flex w-100 justify-content-center align-items-center border rounded p-3 mb-3 gap-3 text-center";
           box.innerHTML = `
               <div class="fs-5">${hour}</div>
               <div><img src="${weatherIcon}" alt="weatherIcon" /></div>
               <div class="fs-5"><p class="weather-description">${weatherDescription}</p></div>
               <p class="fs-3"><strong class="temperature">${temperatureCelsius}</strong>
               <strong class="fs-3 units">°C</strong></p>
-              <p class="fs-5">Real feel: <strong class="real-feel">${realFeelCelsius}</strong>
+              <p class="fs-5 ms-3">Real feel: <strong class="real-feel">${realFeelCelsius}</strong>
               <strong class="fs-5 units">°C</strong></p>
               `;
 
