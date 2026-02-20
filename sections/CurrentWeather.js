@@ -27,6 +27,7 @@ function displayCurrentWeather(city) {
 
       const currentWeatherContainer = document.querySelector(".current-weather");
       currentWeatherContainer.innerHTML = `
+              <div class="current-weather-content d-flex flex-column flex-md-row flex-wrap gap-3">
                 <div class="px-3">
                     <div class="fs-2 mb-2"><strong>${name}</strong></div>
                     <div class="fs-4"><strong>${day}</strong>, ${hour}</div>
@@ -52,16 +53,17 @@ function displayCurrentWeather(city) {
                     <p class="fs-5">Răsărit: <strong>${sunrise}</strong></p>
                     <p class="fs-5">Apus: <strong>${sunset}</strong></p>
                 </div>
+              </div>
                 `;
 
       const temperatureElement = currentWeatherContainer.querySelector(".temperature");
       const realFeelElement = currentWeatherContainer.querySelector(".real-feel");
       const unitsElement = currentWeatherContainer.querySelectorAll(".units");
 
-      const buttonConvertor = document.querySelector(".convertor");
+      const switchButton = document.querySelector(".convertor");
 
       let isFahrenheit = false;
-      buttonConvertor.addEventListener("click", () => {
+      switchButton.addEventListener("change", () => {
         isFahrenheit = !isFahrenheit;
         if (isFahrenheit) {
           temperatureElement.textContent = temperatureFahrenheit;

@@ -70,7 +70,7 @@ function displayWeatherForecast(city) {
           box.innerHTML = `
               <div class="fs-5">${hour}</div>
               <div><img src="${weatherIcon}" alt="weatherIcon" /></div>
-              <div class="fs-5"><p>${weatherDescription}</p></div>
+              <div class="fs-5"><p class="weather-description">${weatherDescription}</p></div>
               <p class="fs-3"><strong class="temperature">${temperatureCelsius}</strong>
               <strong class="fs-3 units">°C</strong></p>
               <p class="fs-5">Real feel: <strong class="real-feel">${realFeelCelsius}</strong>
@@ -83,9 +83,9 @@ function displayWeatherForecast(city) {
           const realFeelElement = forecastDetails.querySelector(".real-feel");
           const unitsElement = forecastDetails.querySelectorAll(".units");
 
-          const buttonConvertor = document.querySelector(".convertor");
+          const switchButton = document.querySelector(".convertor");
           let isFahrenheit = false;
-          buttonConvertor.addEventListener("click", () => {
+          switchButton.addEventListener("change", () => {
             isFahrenheit = !isFahrenheit;
             if (isFahrenheit) {
               temperatureElement.textContent = temperatureFahrenheit;
