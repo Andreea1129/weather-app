@@ -85,6 +85,10 @@ header {
   text-decoration: none;
 }
 
+.convertor {
+  transform: scale(1.5);
+}
+
 @media (max-width: 576px) {
   .current-weather {
     text-align: center;
