@@ -31,59 +31,86 @@ function displayWeatherForecast(city) {
 
       // Parcurg obiectul dayMap - cheile din obiect sunt zilele saptamanii pt care avem predictii
       for (const key in dayMap) {
-        const dayElement=document.createElement("div");
-        dayElement.className="day mb-3";
+        const dayElement = document.createElement("div");
+        dayElement.className = "day mb-3";
 
-        const header=document.createElement("div");
-        header.className="header-day d-flex w-100 justify-content-between align-items-center border rounded p-3 mb-3 bg-secondary";
-        
-        const title=document.createElement("h3");
-        title.className="text-primary";
-        title.textContent=key;
+        const header = document.createElement("div");
+        header.className =
+          "header-day d-flex w-100 justify-content-between align-items-center border rounded p-3 mb-3 bg-secondary";
 
-        const forecastDetailsButton=document.createElement("button");
-        forecastDetailsButton.type="button";
-        forecastDetailsButton.className="toggle btn btn-dark m-3";
-        forecastDetailsButton.textContent="Show forecast";
+        const title = document.createElement("h3");
+        title.className = "text-primary";
+        title.textContent = key;
 
-        header.append(title,forecastDetailsButton);
+        const forecastDetailsButton = document.createElement("button");
+        forecastDetailsButton.type = "button";
+        forecastDetailsButton.className = "toggle btn btn-dark m-3";
+        forecastDetailsButton.textContent = "Show forecast";
 
-        const forecastDetails=document.createElement("div");
-        forecastDetails.className="details d-none";
+        header.append(title, forecastDetailsButton);
+
+        const forecastDetails = document.createElement("div");
+        forecastDetails.className = "details d-none";
 
         const days = dayMap[key];
         days.forEach((element) => {
           const { dt, main, weather } = element;
 
           const hour = getHour(dt);
-          const temperature = Math.round(main.temp);
-          const realFeel = Math.round(main["feels_like"]);
+          const temperatureCelsius = Math.round(main.temp);
+          const realFeelCelsius = Math.round(main["feels_like"]);
+          const temperatureFahrenheit = Math.round(main.temp * 1.8 + 32);
+          const realFeelFahrenheit = Math.round(main["feels_like"] * 1.8 + 32);
           const weatherDescription = weather[0].description;
           const weatherIcon = getWeatherIcon(weather[0].icon);
 
-          const box=document.createElement("div");
-          box.className="weather-forecast-box d-flex w-100 justify-content-between align-items-center border rounded p-3 mb-3";
+          const box = document.createElement("div");
+          box.className =
+            "weather-forecast-box d-flex w-100 justify-content-between align-items-center border rounded p-3 mb-3";
           box.innerHTML = `
               <div class="fs-5">${hour}</div>
               <div><img src="${weatherIcon}" alt="weatherIcon" /></div>
               <div class="fs-5"><p>${weatherDescription}</p></div>
-              <div class="fs-3"><strong>${temperature}°C</strong></div>
-              <div class="real-feel fs-5">Real feel: <strong>${realFeel}°C</strong></div>
-              `; 
+              <p class="fs-3"><strong class="temperature">${temperatureCelsius}</strong>
+              <strong class="fs-3 units">°C</strong></p>
+              <p class="fs-5">Real feel: <strong class="real-feel">${realFeelCelsius}</strong>
+              <strong class="fs-5 units">°C</strong></p>
+              `;
 
-          forecastDetails.appendChild(box);   
+          forecastDetails.appendChild(box);
+
+          const temperatureElement = forecastDetails.querySelector(".temperature");
+          const realFeelElement = forecastDetails.querySelector(".real-feel");
+          const unitsElement = forecastDetails.querySelectorAll(".units");
+
+          const buttonConvertor = document.querySelector(".convertor");
+          let isFahrenheit = false;
+          buttonConvertor.addEventListener("click", () => {
+            isFahrenheit = !isFahrenheit;
+            if (isFahrenheit) {
+              temperatureElement.textContent = temperatureFahrenheit;
+              realFeelElement.textContent = realFeelFahrenheit;
+              unitsElement.forEach((unit) => {
+                unit.textContent = "°F";
+              });
+            } else {
+              temperatureElement.textContent = temperatureCelsius;
+              realFeelElement.textContent = realFeelCelsius;
+              unitsElement.forEach((unit) => {
+                unit.textContent = "°C";
+              });
+            }
           });
-
-          forecastDetailsButton.addEventListener("click", ()=>{
-          const isHidden=forecastDetails.classList.toggle("d-none");
-          forecastDetailsButton.textContent=isHidden ? "Show forecast" : "Hide forecast";
         });
 
-        dayElement.append(header,forecastDetails);
+        forecastDetailsButton.addEventListener("click", () => {
+          const isHidden = forecastDetails.classList.toggle("d-none");
+          forecastDetailsButton.textContent = isHidden
+            ? "Show forecast"
+            : "Hide forecast";
+        });
+        dayElement.append(header, forecastDetails);
         weatherForecastContainer.append(dayElement);
-        
       }
     });
-  }
-
-
+}
