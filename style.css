@@ -93,7 +93,6 @@ header {
   .current-weather {
     text-align: center;
   }
-
   .current-weather img {
     width: 75px;
     height: auto;
@@ -104,10 +103,11 @@ header {
     height: auto;
   }
 
-  .weather-forecast-box .real-feel {
-    display: none;
+  .weather-forecast-box p,
+  .weather-forecast-box div,
+  .weather-forecast-box .units {
+    font-size: 16px !important;
   }
-
   .scroll-to-top {
     padding: 2.5px 5px;
     right: 2.5px;
