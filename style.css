@@ -109,6 +109,9 @@ header {
     font-size: 16px !important;
   }
 
+  .weather-forecast-box{
+    justify-content: center !important;
+  }
   .scroll-to-top {
     padding: 2.5px 5px;
     right: 2.5px;
